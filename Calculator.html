@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Driveaway Calculator</title>
+  <style>
+    /* CSS styles for the calculator */
+    .calculator {
+      max-width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f4f4f4;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .calculator input {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    .calculator button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>DriveAway Calculator</h2>
+    <input type="number" id="numberInput" placeholder="Enter CIF cost here">
+    <button onclick="calculate()">Calculate</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    // JavaScript logic for the calculator
+    function calculate() {
+      var numberInput = document.getElementById("numberInput").value;
+      var rate = 0.27;
+
+      // Check if the input is a valid number between 1 and 100,000
+      if (numberInput >= 1 && numberInput <= 100000) {
+        var result = parseFloat(numberInput / rate) + parseFloat(0.2 * (numberInput / rate)) + parseFloat(0.1 * ((numberInput / rate) + (0.2 * (numberInput / rate)))) + 12000;
+        document.getElementById("result").textContent = "Result: " + result.toFixed(2);
+      } else {
+        document.getElementById("result").textContent = "Invalid input. Please enter a number between 1 and 100,000.";
+      }
+    }
+  </script>
+</body>
+</html>
